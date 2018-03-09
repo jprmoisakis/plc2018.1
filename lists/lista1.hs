@@ -33,4 +33,42 @@ charToNum a
     | isDigit a = digitToInt a
 
 -- Exercicio 1 do Slide
+addEspacos :: Int -> String
+addEspacos 0 = ""
+addEspacos n = " " ++ addEspacos(n - 1)
+
+-- Exercicio 2 do Slide
+paraDireita :: Int -> String -> String
+paraDireita n word = addEspacos n ++ word
+
+-- Exercicio 3 do Slide
+semana :: Int -> Int
+semana 1 = 4
+semana 2 = 0
+semana 3 = 4
+semana 4 = 2
+semana 5 = 1
+semana 6 = 0
+semana 7 = 10
+semana 8 = 9
+semana 9 = 3
+semana 10 = 5
+
+imprimeCabecalho :: String
+imprimeCabecalho = "Semana  Venda" 
+
+-- Exercicio 4 do Slide
+menorMaior :: Int -> Int -> Int -> (Int, Int)
+menorMaior a b c = (minThree a b c, maxThree a b c)
+    where 
+        minThree :: Int -> Int -> Int -> Int
+        minThree a b c
+            | a <= b && a <= c = a
+            | b <= a && b <= c = b
+            | otherwise = c
+        maxThree :: Int -> Int -> Int -> Int
+        maxThree a b c
+            | a >= b && a >= c = a
+            | b >= a && b >= c = b
+            | otherwise = c
 
