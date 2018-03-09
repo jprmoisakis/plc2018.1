@@ -72,3 +72,37 @@ menorMaior a b c = (minThree a b c, maxThree a b c)
             | b >= a && b >= c = b
             | otherwise = c
 
+-- Exercicio 5 do Slide
+ordenaTripla :: (Int, Int, Int) -> (Int, Int, Int)
+ordenaTripla (a, b, c) = (minThree (a, b, c), midThree (a, b, c), maxThree (a, b, c))
+    where
+        minThree :: (Int, Int, Int) -> Int
+        minThree (a, b, c)
+            | a <= b && a <= c = a
+            | b <= a && b <= c = b
+            | otherwise = c
+        maxThree :: (Int, Int, Int) -> Int
+        maxThree (a, b, c)
+            | a >= b && a >= c = a
+            | b >= a && b >= c = b
+            | otherwise = c
+        midThree :: (Int, Int, Int) -> Int
+        midThree (a, b, c)
+            | a <= maxThree (a, b, c) && a >= minThree (a, b, c) = a
+            | b <= maxThree (a, b, c) && b >= minThree (a, b, c) = b
+            | otherwise = c
+
+-- Exercicio 6 do Slide
+type Ponto = (Float, Float)
+type Reta = (Ponto, Ponto)
+
+pontoX :: Ponto -> Float
+pontoX (x, y) = x
+
+pontoY :: Ponto -> Float
+pontoY (x, y) = y
+
+vertical :: Reta -> Bool
+vertical (a, b)
+    | fst a == fst b = True
+    | otherwise = False
