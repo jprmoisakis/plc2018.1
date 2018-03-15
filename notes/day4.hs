@@ -27,12 +27,12 @@ member (x : xs) y
 
 rev :: [a] -> [a]
 rev [] = []
-rev (x : xs) = rev sx ++ [x]
+rev (x : xs) = rev xs ++ [x]
 
 repeticao :: Int -> Char -> [Char]
 repeticao 0 _ = []
-repeticao n c = c : repeticao n-1 c
+repeticao n c = c : repeticao (n-1) c
 
 mtake :: Int -> [a] -> [a]
 mtake 0 _ = []
-mtake n (x : xs) = x : mtake n-1 xs
+mtake n (x : xs) = x : mtake (n-1) xs
