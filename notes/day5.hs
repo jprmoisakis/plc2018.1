@@ -29,12 +29,13 @@ digitosLista [] = []
 digitosLista (x : xs)
     | ehDigito x = x : digitosLista xs
     | otherwise = digitosLista xs
-
 ehDigito :: Char -> Bool
 ehDigito ch = ('0' <= ch) && (ch <= '9')
 
 --somarParesLista :: [(Int, Int)] -> [Int]
-
+somarParesLista :: [(Int, Int)] -> [Int]
+somarParesLista [] = []
+somarParesLista (x : xs) = (fst x + snd x) : somarParesLista xs
 
 -- Expressao case
 
@@ -76,3 +77,4 @@ somaPares :: [(Int, Int)] -> [Int]
 somaPares xs = case xs of
     [] -> error "Lista vazia"
     xs -> [x + y | (x, y) <- xs]
+
