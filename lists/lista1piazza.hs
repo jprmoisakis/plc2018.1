@@ -44,9 +44,11 @@ ordenaTripla (a, b, c) = (menorTripla (a, b, c), meioTripla (a, b, c), maiorTrip
                 | otherwise = c
             meioTripla :: (Int, Int, Int) -> Int -- COMO FAZER ISSO
             meioTripla (a, b, c)
-                | a <= maiorTripla (a, b, c) && a >= menorTripla (a, b, c) = a
-                | b <= maiorTripla (a, b, c) && b >= menorTripla (a, b, c) = b
-                | otherwise = c
+                | a == maiorTripla (a, b, c) && b == menorTripla (a, b, c) || 
+                (b == maiorTripla (a, b, c) && a == menorTripla (a, b, c)) = c
+                | b == maiorTripla (a, b, c) && c == menorTripla (a, b, c) || 
+                (c == maiorTripla (a, b, c) && b == menorTripla (a, b, c)) = a
+                | otherwise = b
 
 -- Questão sobre listas
 double :: [Int] -> [Int]
