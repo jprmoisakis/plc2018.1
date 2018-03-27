@@ -74,7 +74,7 @@ emprestimosComp :: BancoDados -> Livro -> [Pessoa]
 emprestimosComp xs l = [fst p | p <- xs, snd p == l]
 
 emprestadoComp :: BancoDados -> Livro -> Bool 
-emprestadoComp xs l = head [True | x <- xs, snd x == l]
+emprestadoComp xs l = length [True | x <- xs, snd x == l] > 0
 -- This only works when there is the book in the list
 -- I could make it return a list that would be empty when
 -- the book is not on the list, but that would return a list
