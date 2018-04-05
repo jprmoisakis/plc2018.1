@@ -44,3 +44,9 @@ somaQuadradoFold xs = foldr (\ x -> (+) (x * x)) 0 xs
 -- Questão, retornar lista com os numeros maiores que zero usando filter
 maiorQueZero :: [Int] -> [Int]
 maiorQueZero xs = filter (> 0) xs
+
+-- Questão, recebe lista de lista de inteiros e retorna lista com os maiores de cada sub lista
+maiores :: [[Int]] -> [Int]
+--maiores [] = []
+--maiores (x : xs) = maximum x : maiores xs
+maiores xs = map maximum xs
