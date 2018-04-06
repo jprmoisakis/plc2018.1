@@ -3,6 +3,10 @@ menor :: [Int] -> Int
 menor xs = minimum xs
 
 -- myMap
+-- Map é para que a função rode em cada elemento da lista, nesse caso temos duas listas para suprir
+-- a função que tem 2 parametros, cada parametro sera um elemento de cada lista
+-- as listas precisam ter tamanhos iguais
+-- Uma vez que rodamos a função na head das listas "concatenamos" (:) com o myMap de f nas caudas
 myMap :: (a -> b -> b) -> [a] -> [b] -> [b]
 myMap f [] [] = []
 myMap f (x : xs) (y : ys) = f x y : myMap f xs ys
