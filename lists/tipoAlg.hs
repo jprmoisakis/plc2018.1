@@ -39,25 +39,49 @@ square :: Int -> [(Int, Int)]
 square n = [(x, y)| x <- aux n, y <- aux n, x /= y]
 
 -- Merge em duas listas e ord
-merge :: [Int] -> [Int] -> [Int] -- Só funciona para duas listas já ordenadas
+merge :: [DiasSemana] -> [DiasSemana] -> [DiasSemana] -- Só funciona para duas listas já ordenadas
 merge [] [] = []
 merge [] ys = ys
 merge xs [] = xs
 merge (x : xs) (y : ys)
     | x <= y = x : merge xs (y : ys)
-    | y <= x = y : merge (x : xs) ys
+    | y < x = y : merge (x : xs) ys
 
 -- Merge Sort
-halve :: [Int] -> ([Int], [Int])
-halve [] = ([], [])
+halve :: [DiasSemana] -> ([DiasSemana], [DiasSemana])
 halve xs = (take (div (length xs) 2) xs, drop (div (length xs) 2) xs)
 
-mergeSort :: [Int] -> [Int] -- Não funciona 100% por causa da limitação do merge
+mergeSort :: [DiasSemana] -> [DiasSemana] -- Não funciona 100% por causa da limitação do merge
 mergeSort [] = []
-mergeSort xs = merge (fst (halve xs)) (snd (halve xs))
+mergeSort [x] = [x]
+mergeSort xs = merge (mergeSort (fst (halve xs))) (mergeSort (snd (halve xs)))
 
--- Aplicar lista de funcções unárias em lista de ints
-aplicaFuncoes :: [Int -> Int] -> [Int] -> [[Int]]
+-- Aplicar lista de funcções unárias em lista de as
+aplicaFuncoes :: [a -> a] -> [a] -> [[a]]
 aplicaFuncoes _ [] = []
 aplicaFuncoes [] b = []
 aplicaFuncoes (f : fs) xs = map f xs : aplicaFuncoes fs xs
+
+-- Dias da semana data, várias funções
+data DiasSemana = Domingo | Segunda | Terca | Quarta | Quinta | Sexta | Sabado
+    deriving (Show, Enum, Eq, Ord)
+
+ordenaUteis :: [DiasSemana] -> [DiasSemana]
+ordenaUteis [] = []
+ordenaUteis xs = mergeSort xs
+
+datasIguais :: [(DiasSemana, Int)] -> DiasSemana -> [Int]
+datasIguais [] _ = []
+datasIguais (x : xs) dia 
+    | fst x == dia = snd x : datasIguais xs dia
+    | otherwise = datasIguais xs dia
+
+imprimeMesAux :: Int -> DiasSemana -> [(Int, DiasSemana)]
+--imprimeMesAux dia = [(a, b) | a <- [1..30], b <- [dia..] ++ [Domingo .. pred dia]]
+imprimeMesAux 31 _ = []
+imprimeMesAux a dia
+    | dia /= Sabado = (a, dia) : imprimeMesAux (a + 1) (succ dia)
+    | otherwise = (a, dia) : imprimeMesAux (a + 1) Domingo
+
+imprimeMes :: DiasSemana -> [(Int, DiasSemana)]
+imprimeMes dia = imprimeMesAux 0 dia
