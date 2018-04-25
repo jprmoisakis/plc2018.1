@@ -24,8 +24,7 @@ data Pontos = Ponto Coord Coord Coord
     deriving (Show)
 
 distancia :: Pontos -> Pontos -> Double
-distancia (Ponto a b c) (Ponto x y z) =
-    sqrt( (a - x) ^ 2 + (b - y) ^ 2  + (c - z) ^ 2 )
+distancia (Ponto a b c) (Ponto x y z) = sqrt( (a - x) ^ 2 + (b - y) ^ 2  + (c - z) ^ 2 )
 
 -- Compreensão de lista pra pritar uma matriz
 grid :: Int -> Int -> [(Int, Int)]
@@ -39,7 +38,7 @@ square :: Int -> [(Int, Int)]
 square n = [(x, y)| x <- aux n, y <- aux n, x /= y]
 
 -- Merge em duas listas e ord
-merge :: [DiasSemana] -> [DiasSemana] -> [DiasSemana] -- Só funciona para duas listas já ordenadas
+merge :: Ord a => [a] -> [a] -> [a]
 merge [] [] = []
 merge [] ys = ys
 merge xs [] = xs
@@ -48,10 +47,10 @@ merge (x : xs) (y : ys)
     | y < x = y : merge (x : xs) ys
 
 -- Merge Sort
-halve :: [DiasSemana] -> ([DiasSemana], [DiasSemana])
+halve :: Ord a => [a] -> ([a], [a])
 halve xs = (take (div (length xs) 2) xs, drop (div (length xs) 2) xs)
 
-mergeSort :: [DiasSemana] -> [DiasSemana] -- Não funciona 100% por causa da limitação do merge
+mergeSort :: Ord a => [a] -> [a]
 mergeSort [] = []
 mergeSort [x] = [x]
 mergeSort xs = merge (mergeSort (fst (halve xs))) (mergeSort (snd (halve xs)))
