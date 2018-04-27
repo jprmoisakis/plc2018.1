@@ -24,3 +24,6 @@ applyFunctions (f : fs) (x : xs) = (f x) : applyFunctions fs xs
 abrev :: [String] -> [String]
 abrev [] = []
 abrev (x : xs) = sort (<) ((take 1 ((take 1 (words x)) !! 0) ++ ". " ++ ((drop 2 (words x)) !! 0)) : abrev xs)
+
+agrupar2 :: Eq a => [a] -> [[a]]
+agrupar2 (x:xs) = (x : [ y | y <- xs, x == y]) : []

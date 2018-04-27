@@ -39,6 +39,6 @@ instance Eq Lampada where
     (Incandescente n1 p1) == (Incandescente n2 p2) = n1 == n2 && p1 == p2
 
 -- 4a)
-data Barra = Um Fio Lampada | Dois Fio Barra
-data Lustre = End Pendente Lampada | Beg [Barra]
+--data Barra = Um Fio Lampada | Dois Fio Barra
+--data Lustre = End Pendente Lampada | Beg [Barra]
     

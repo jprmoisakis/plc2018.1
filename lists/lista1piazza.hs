@@ -1,4 +1,3 @@
--- https://piazza-resources.s3.amazonaws.com/j652bus99z66yt/j6nkf54g3dj423/sala_lista1.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&Expires=1521397902&Signature=WSMATOn%2BHV2DeAGBYl%2FfNi%2BpfW0%3D
 -- Lista é a do link acima
 -- Vinícius Aguiar de Oliveira
 
